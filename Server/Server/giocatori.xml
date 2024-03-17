@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<giocatori>
+  <giocatore>
+    <nome>Gaffuri</nome>
+    <punteggiomassimo>100</punteggiomassimo>
+    <vittorie>10</vittorie>
+  </giocatore>
+  <giocatore>
+    <nome>Caso</nome>
+    <punteggiomassimo>200</punteggiomassimo>
+    <vittorie>8</vittorie>
+  </giocatore>
+  <giocatore>
+    <nome>Bernini</nome>
+    <punteggiomassimo>300</punteggiomassimo>
+    <vittorie>15</vittorie>
+  </giocatore>
+  <giocatore>
+    <nome>Crobu</nome>
+    <punteggiomassimo>400</punteggiomassimo>
+    <vittorie>12</vittorie>
+  </giocatore>
+  <giocatore>
+    <nome>Camarda</nome>
+    <punteggiomassimo>500</punteggiomassimo>
+    <vittorie>20</vittorie>
+  </giocatore>
+</giocatori>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<partite>
+  <partita>
+    <nome>Gaffuri</nome>
+    <punteggio>100</punteggio>
+  </partita>
+  <partita>
+    <nome>Crobu</nome>
+    <punteggio>200</punteggio>
+  </partita>
+  <partita>
+    <nome>Camarda</nome>
+    <punteggio>50</punteggio>
+  </partita>
+  <partita>
+    <nome>Crobu</nome>
+    <punteggio>4</punteggio>
+  </partita>
+</partite>
