@@ -2,14 +2,14 @@
 <partite>
   <partita>
     <nome>Gaffuri</nome>
-    <punteggio>100</punteggio>
+    <punteggio>20</punteggio>
   </partita>
   <partita>
     <nome>Crobu</nome>
-    <punteggio>200</punteggio>
+    <punteggio>20</punteggio>
   </partita>
   <partita>
     <nome>Camarda</nome>
-    <punteggio>50</punteggio>
+    <punteggio>20</punteggio>
   </partita>
 </partite>
