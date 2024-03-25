@@ -184,6 +184,12 @@ namespace ServerCB
                                     SalvaPartita(partita);
                                 }
                                 break;
+                            case "classifica":
+                                if (logged)
+                                {
+                                    response = GetClassifica();
+                                }
+                                break;
                             case "disconnetto":
                                 if (logged)
                                 {
@@ -226,6 +232,20 @@ namespace ServerCB
             int port = ((IPEndPoint)listener.LocalEndpoint).Port;
             listener.Stop();
             return port;
+        }
+        private string GetClassifica()
+        {
+            try
+            {
+                string classifica = "";
+                giocatori = giocatori.OrderByDescending(o => o.PunteggioMassimo).ToList();
+                foreach (Giocatore g in giocatori)
+                {
+                    classifica += g.Nome + ';';
+                }
+                classifica = classifica.Remove(classifica.Length - 1);
+                return classifica;
+            } catch (Exception e) { return e.Message; }           
         }
         private bool Login(string nome)
         {
