@@ -241,7 +241,7 @@ namespace ServerCB
                 giocatori = giocatori.OrderByDescending(o => o.PunteggioMassimo).ToList();
                 foreach (Giocatore g in giocatori)
                 {
-                    classifica += g.Nome + ';';
+                    classifica += g.Nome + ':' + g.PunteggioMassimo + ';';
                 }
                 classifica = classifica.Remove(classifica.Length - 1);
                 return classifica;
