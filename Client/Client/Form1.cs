@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -36,7 +36,7 @@ namespace ClientCB
             limSx = 0;
             limUp = 0;
             limDx = this.Width - 60;
-            limDw = this.Height - 60;      
+            limDw = this.Height - 60;
         }
 
         // Funzioni
@@ -46,12 +46,12 @@ namespace ClientCB
             {
                 byte[] data = Encoding.ASCII.GetBytes(message);
                 stream.Write(data, 0, data.Length);
-            } catch(Exception e) { MessageBox.Show(e.Message); }
+            } catch (Exception e) { MessageBox.Show(e.Message); }
         }
         private string RiceviMessaggioServer()
         {
             try
-            { 
+            {
                 int bytesRead = stream.Read(responseData, 0, responseData.Length);
                 string response = Encoding.ASCII.GetString(responseData, 0, bytesRead);
                 return response;
@@ -95,7 +95,7 @@ namespace ClientCB
                         buttonLogout.Visible = true;
 
                         buttonInizia.Visible = true;
-                    }                    
+                    }
                     else
                     {
                         MessageBox.Show("Error");
@@ -131,7 +131,7 @@ namespace ClientCB
             }
             return false;
         }
-        
+
         private void InizioPartita()
         {
             labelPunteggio.Text = "Punteggio: 0";
@@ -140,6 +140,8 @@ namespace ClientCB
             buttonLogout.Visible = false;
             buttonRigioca.Visible = false;
             buttonGioca.Visible = false;
+            listView1.Visible = true;
+            classifica();
             timerPartita.Start();
             clicks = 0;
             labelNome.Visible = false;
@@ -155,7 +157,8 @@ namespace ClientCB
             labelNome.Visible = true;
             labelRecord.Visible = true;
             labelVittorie.Visible = true;
-            buttonRigioca.Visible = true;          
+            buttonRigioca.Visible = true;
+            listView1.Visible = true;
             InviaPunteggio();
         }
         private void Logout(TcpClient client, NetworkStream stream)
@@ -172,11 +175,12 @@ namespace ClientCB
                 buttonGioca.Visible = true;
                 button.Visible = false;
                 buttonLogout.Visible = false;
-                buttonRigioca.Visible = false;                
+                buttonRigioca.Visible = false;
                 labelNome.Visible = false;
                 labelRecord.Visible = false;
                 labelVittorie.Visible = false;
                 labelPunteggio.Visible = false;
+                listView1.Visible = false;
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
 
@@ -188,9 +192,46 @@ namespace ClientCB
                 string message = nome + ";punteggio;" + clicks;
 
                 InviaMessaggioServer(message);
+                classifica();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }       
+        }
+        private void classifica()
+        {
+            try
+            {
+                string message = nome + "classifica";
+                InviaMessaggioServer(message);
+
+                string response = RiceviMessaggioServer();
+                GeneraClassifica(response);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+        private void GeneraClassifica(string classifica)
+        {
+            try
+            {
+                string[] intestazione = new string[] { "Nome" };
+
+                for (int i = 0; i < intestazione.Length; i++)
+                {
+                    listView1.Columns.Add(intestazione[i]);
+                }
+                string[] giocatori = classifica.Split(';');
+
+                for (int i = 0; i < giocatori.Length; i++)
+                {
+                    ListViewItem riga = new ListViewItem(giocatori);
+
+                    listView1.Items.Add(riga);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         
         // Button Clicks
         private void Login_Click(object sender, EventArgs e)
@@ -230,5 +271,3 @@ namespace ClientCB
         }
     }
 }
-
-
