@@ -212,18 +212,19 @@ namespace ClientCB
         {
             try
             {
-                string[] intestazione = new string[] { "Nome" };
-
+                string[] intestazione = new string[] { "Nome", "Punteggio" };
+        
                 for (int i = 0; i < intestazione.Length; i++)
                 {
                     listView1.Columns.Add(intestazione[i]);
                 }
                 string[] giocatori = classifica.Split(';');
-
+                string nome = "", punteggio = "";
                 for (int i = 0; i < giocatori.Length; i++)
                 {
-                    ListViewItem riga = new ListViewItem(giocatori);
-
+                    nome = giocatori[i].Split(':')[0];
+                    punteggio = giocatori[i].Split(':')[1];
+                    ListViewItem riga = new ListViewItem(nome, punteggio);
                     listView1.Items.Add(riga);
                 }
             }
